@@ -12,51 +12,23 @@ from PIL import Image, ImageTk
 
 # importint plotting libraries
 from matplotlib.backends.backend_tkagg import *
-matplotlib.use("TkAgg")
 from matplotlib.figure import Figure
+from matplotlib.widgets import Cursor, MultiCursor
 import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import matplotlib
+matplotlib.use("TkAgg")
 
 # importing suppotive libraries
-from cursor import Cursor
+# from cursor import Cursor
+from defines import *
 from serial.tools import list_ports
 import numpy as np
 import pandas as pd
 import serial
 import time
 
-
-# application title
-# you can change aplication title 
-APPLICATION_TITLE   = "Spectrum Analyzer"
-
-# text style for
-FONT_GENERAL        = 'Bebas Kai'
-FONT_LABEL_FRAME    = 'Bebas Kai'
-
-# font sizes
-LABEL_FONT          = (FONT_GENERAL, 9, 'bold')
-LABEL_FRAME_FONT    = (FONT_LABEL_FRAME, 9, 'bold')
-
-# here you can change Background and button Colors
-BACKGROUND_COLOR    = '#fff'
-BUTTON_COLOR        = '#fff'
-
-# graph animation interval
-INTERVAL            = 10000
-
-# label texts for top bar
-REF_LABEL   = "Ref Level\t: {ref:.2f} dBm"
-ATT_LABEL   = "Att\t: {att:.2f} dB"
-RVB_LABEL   = "RBV\t: {rvb:.2f} MHz"
-VBW_LABEL   = "VBW\t: {vbw:.2f} MHz"
-SWT_LABEL   = "SWT : {swt:.2f} ms"
-MODE_LABEL  = "Mode : {mode:} "
-
-# label texts for bottom bar
-CENTER_FREQ_LABEL   = "Center\t: {center_freq:.2f} MHz"
-SPAN_LABEL          = "Span\t: {span:.2f} MHz"
+import mplcursors
 
 """ this is main class for the Project"""
 class Application(Tk):
@@ -65,6 +37,8 @@ class Application(Tk):
         self.show = []
         self.spec_freq = []
         self.spec_pow  = []
+        self.minsize(800,480)
+        self.maxsize(800,480)
         self.create_widget()
         self.testArrFill()
         self.values_updater(10)
@@ -79,14 +53,15 @@ class Application(Tk):
 
         # Create a Graph
         self.fig    = Figure(figsize=(5,5), dpi=100)
-        
         self.graph  = self.fig.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.fig, self)
+
+        self.canvas.draw()
         self.canvas.get_tk_widget().place(x=0, y=30, height=385, width=725)
 
         self.toolbar = NavigationToolbar2Tk(self.canvas, self)
-        cursor = Cursor(self.graph)
-        self.canvas.mpl_connect('motion_notify_event', cursor.mouse_move)
+        self.toolbar.update()
+
 
         slider_update = Scale(self, from_=1, to=50, orient=HORIZONTAL, bg=BACKGROUND_COLOR, label="Frequency [Hz]")
         slider_update.place(x=665, y=80,  width=125)
@@ -131,39 +106,39 @@ class Application(Tk):
 
         # creating paramters labels for bottom bar
         self.lblCenter_Freq = Label(self, text=CENTER_FREQ_LABEL.format(center_freq = 0.00),   anchor="w", font =LABEL_FONT, width = 16)
-        self.lblCenter_Freq.place(x=300, y=450)
+        self.lblCenter_Freq.place(x=250, y=450)
+
+        self.lblFreqDiv= Label(self, text=FREQUENCY_DIV.format(FreqDiv = 0.00),   anchor="w", font =LABEL_FONT, width = 16)
+        self.lblFreqDiv.place(x=370, y=450)
 
         self.lblSpan = Label(self, text=SPAN_LABEL.format(span = 0.00),   anchor="w", font =LABEL_FONT, width = 16)
-        self.lblSpan.place(x=450, y=450)
+        self.lblSpan.place(x=490, y=450)
 
-        # #  25 mm button drawing
-        # self.btn_25mm = Button(self, text=f'37 mm', width=25, height=5, font =LABEL_FONT, highlightthickness = 1, bd = 1, bg=BACKGROUND_COLOR, command=self.btn_37mm_command)
-        # self.btn_25mm.place(x=576, y=210)
 
     def values_updater(self, time):
 
         self.port_selector['values'] = list_ports.comports()
 
         self.graph.clear()
-        #self.graph.set_title("The Spectrum Analyzer")
         self.graph.set_xlabel("Frequency (Hz)")
         self.graph.set_ylabel("Power (dBm)")
         self.graph.grid()
-        self.graph.plot(self.spec_freq,self.spec_pow,c='r')
+        ax = self.graph.plot(self.spec_freq,self.spec_pow,c='r')
+        #cursor = Cursor(ax, color='green', linewidth=2)
+        cursor = Cursor(self.graph, color='r', lw=2)
+        self.fig.canvas.draw()
+        print(self.graph)
         # self.graph.fill(self.spec_freq,self.spec_pow,c='r', alpha =0.3)
  
-    """"function for 37 mm button"""
-    def btn_37mm_command(self):
-        print("Command for 37mm")
 
 """"main functon"""
 if __name__ == "__main__":
-
     window = Application()
     window.geometry("800x480")    # geometry settings for 7 inchs display
-    window.attributes('-toolwindow', True)
+    #window.attributes('-toolwindow', True)
     window.configure(bg = BACKGROUND_COLOR) # assigning background color
-    update = animation.FuncAnimation(window.fig, window.values_updater, interval=INTERVAL) #value updating
+    update = animation.FuncAnimation(window.fig, \
+         window.values_updater, interval=INTERVAL) #value updating
     #window.wm_attributes('-fullscreen', 'True') # this is for enable the full screen view
     window.wm_title(APPLICATION_TITLE) # this is for enable the full screen view
     window.mainloop()

@@ -12,6 +12,7 @@ class Cursor:
         self.txt = ax.text(0.7, 0.9, '', transform=ax.transAxes)
 
     def mouse_move(self, event):
+        print(event)
         if not event.inaxes:
             return
 
