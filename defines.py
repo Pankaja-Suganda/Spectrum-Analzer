@@ -8,21 +8,22 @@ APPLICATION_TITLE   = "Spectrum Analyzer"
 
 # text style for
 FONT_GENERAL        = 'Bebas Kai'
-FONT_LABEL_FRAME    = 'Bebas Kai'
 
 # font sizes
-LABEL_FONT          = (FONT_GENERAL, 9, 'bold')
-LABEL_FRAME_FONT    = (FONT_LABEL_FRAME, 9, 'bold')
+LABEL_FONT          = (FONT_GENERAL, 8, 'bold')
 
 # here you can change Background and button Colors
-BACKGROUND_COLOR    = '#fff'
-BUTTON_COLOR        = '#fff'
+BACKGROUND_COLOR    = 'Gray10'
+BUTTON_COLOR        = 'Gray99'
+TEXT_COLOR          = 'Gray80'
+GRAPH_COLOR         = (0.1,0.1,0.1)
+GRAPH_AXIS_COLOR    = (0.8,0.8,0.8)
 
 # graph animation interval
-INTERVAL            = 10000
+INTERVAL            = 100
 
 # label texts for top bar
-REF_LABEL   = "Ref Level\t: {ref:.2f} dBm"
+REF_LABEL   = "Ref Lev  : {ref:.2f} dBm"
 ATT_LABEL   = "Att\t: {att:.2f} dB"
 RVB_LABEL   = "RBV\t: {rvb:.2f} MHz"
 VBW_LABEL   = "VBW\t: {vbw:.2f} MHz"
@@ -35,4 +36,9 @@ SPAN_LABEL          = "Span   : {span:.2f} MHz"
 FREQUENCY_DIV       = "Freq Div : {FreqDiv:} MHz/"
 
 # graph parameters
-PLOTTING_COLOR = 'r'
+PLOTTING_COLOR = 'y'
+
+#serial communication parameters
+BANDRATE_TIME   = 115200
+START_FLAG      = 'S'
+END_FLAG        = 'P'
