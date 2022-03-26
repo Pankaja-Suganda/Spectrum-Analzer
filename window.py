@@ -85,44 +85,44 @@ class Application(Tk):
         self.logo_start.place(x=5,y=5)
 
         # port selector combobox 
-        self.port_selector = ttk.Combobox(self, textvariable="Select Port", width=17, values=list_ports.comports())
+        self.port_selector = ttk.Combobox(self, textvariable="Select Port", width=15, values=list_ports.comports())
         self.port_selector.place(x=665, y=10)
 
         # port select
-        self.btn_select = Button(self, text="Select", height=1, width=16, font =LABEL_FONT, command=self.Comport_select_event )
+        self.btn_select = Button(self, text="Select", height=1, width=15, font =LABEL_FONT, command=self.Comport_select_event )
         self.btn_select.place(x=665, y=40)
 
         # port deselect
-        self.btn_select = Button(self, text="Remove", height=1, width=16, font =LABEL_FONT, command=self.deAttachPort )
+        self.btn_select = Button(self, text="Remove", height=1, width=15, font =LABEL_FONT, command=self.deAttachPort )
         self.btn_select.place(x=665, y=75)
 
         # creating paramters labels for top bar
-        self.lblRefLevel = Label(self, text=REF_LABEL.format(ref = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 16)
+        self.lblRefLevel = Label(self, text=REF_LABEL.format(ref = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 17)
         self.lblRefLevel.place(x=170, y=10)
 
-        self.lblAtt = Label(self, text=ATT_LABEL.format(att = 0.00),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 16)
+        self.lblAtt = Label(self, text=ATT_LABEL.format(att = 0.00),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 17)
         self.lblAtt.place(x=170, y=30)
 
-        self.lblSWT = Label(self, text=SWT_LABEL.format(swt = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 12)
+        self.lblSWT = Label(self, text=SWT_LABEL.format(swt = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 14)
         self.lblSWT.place(x=300, y=30)
 
-        self.lblRVB = Label(self, text=RVB_LABEL.format(rvb = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 16)
+        self.lblRVB = Label(self, text=RVB_LABEL.format(rvb = 0.00),  anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 17)
         self.lblRVB.place(x=400, y=10)
 
-        self.lblVBW = Label(self, text=VBW_LABEL.format(vbw = 0.00),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 16)
+        self.lblVBW = Label(self, text=VBW_LABEL.format(vbw = 0.00),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 17)
         self.lblVBW.place(x=400, y=30)
 
-        self.lblMode = Label(self, text=MODE_LABEL.format(mode = "Auto Mode"),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 16)
+        self.lblMode = Label(self, text=MODE_LABEL.format(mode = "Auto Mode"),   anchor="w", bg=BACKGROUND_COLOR, font =LABEL_FONT, fg =TEXT_COLOR, width = 17)
         self.lblMode.place(x=530, y=30)
 
         # creating paramters labels for bottom bar
-        self.lblCenter_Freq = Label(self, text=CENTER_FREQ_LABEL.format(center_freq = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 16)
+        self.lblCenter_Freq = Label(self, text=CENTER_FREQ_LABEL.format(center_freq = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 17)
         self.lblCenter_Freq.place(x=250, y=450)
 
-        self.lblFreqDiv= Label(self, text=FREQUENCY_DIV.format(FreqDiv = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 16)
+        self.lblFreqDiv= Label(self, text=FREQUENCY_DIV.format(FreqDiv = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 17)
         self.lblFreqDiv.place(x=370, y=450)
 
-        self.lblSpan = Label(self, text=SPAN_LABEL.format(span = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 16)
+        self.lblSpan = Label(self, text=SPAN_LABEL.format(span = 0.00),   anchor="w", font =LABEL_FONT, fg =TEXT_COLOR, bg=BACKGROUND_COLOR, width = 17)
         self.lblSpan.place(x=490, y=450)
 
     def Comport_select_event(self):
