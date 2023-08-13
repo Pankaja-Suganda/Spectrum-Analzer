@@ -38,11 +38,11 @@ This project aims to create a Spectrum Analyzer Graphical User Interface (GUI) u
    python window.py
 Use the GUI to select a serial port, visualize spectrum data, and explore the provided features.
 
-###Arduino Test Script
+### Arduino Test Script
 The repository also includes a sample Arduino script (in Serial_test folder) to simulate data output. You can upload this script to an Arduino board to send simulated frequency and power data to the GUI. Make sure you connect the Arduino to your computer and select the appropriate serial port in the GUI.
 
-###Contributing
+### Contributing
 Contributions are welcome! If you find any bugs, have suggestions, or want to enhance the project, feel free to create issues or pull requests.
 
-###License
+### License
 None
