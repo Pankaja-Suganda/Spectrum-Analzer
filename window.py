@@ -76,7 +76,7 @@ class Application(Tk):
         slider_update.place(x=665, y=150,  width=125)
 
         # adding the 'logo.jpg' image 
-        r_image= Image.open('./images/logo.png').resize((150,40), Image.LANCZOS) ### ANTIALIAS was removed from Pillow use "LANCZOS" 
+        r_image= Image.open('./images/logo.png').resize((150,40), Image.LANCZOS) ## ANTIALIAS was removed from Pillow use "LANCZOS" 
         self.logo = ImageTk.PhotoImage(r_image)
         
         self.logo_start = Label(self, width=150, height=50, bg=BACKGROUND_COLOR, fg='dark gray')
